@@ -3,53 +3,58 @@
 @section('title', 'Edit Restaurant')
 
 @section('content')
-<div class="bg-white rounded-lg shadow-md p-6 max-w-2xl mx-auto">
-    <h1 class="text-3xl font-bold text-gray-800 mb-6">Edit Restaurant</h1>
+<div class="max-w-2xl mx-auto bg-white rounded-2xl shadow-lg p-8 mt-10">
+    <h1 class="text-3xl font-extrabold text-gray-800 mb-8 text-center">Edit Restaurant</h1>
     
-    <form action="{{ route('restaurants.update', $restaurant) }}" method="POST">
+    <form action="{{ route('restaurants.update', $restaurant) }}" method="POST" class="space-y-6">
         @csrf
         @method('PUT')
         
-        <div class="mb-4">
-            <label class="block text-gray-700 font-semibold mb-2">Restaurant Name *</label>
+        <!-- Restaurant Name -->
+        <div>
+            <label class="block text-gray-700 font-semibold mb-2">Restaurant Name <span class="text-red-500">*</span></label>
             <input type="text" name="name" value="{{ old('name', $restaurant->name) }}" required
-                class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500">
+                class="w-full px-5 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent shadow-sm">
         </div>
         
-        <div class="mb-4">
+        <!-- Address -->
+        <div>
             <label class="block text-gray-700 font-semibold mb-2">Address</label>
             <input type="text" name="address" value="{{ old('address', $restaurant->address) }}"
-                class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500">
+                class="w-full px-5 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent shadow-sm">
         </div>
         
-        <div class="mb-4">
+        <!-- Phone -->
+        <div>
             <label class="block text-gray-700 font-semibold mb-2">Phone</label>
             <input type="text" name="phone" value="{{ old('phone', $restaurant->phone) }}"
-                class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500">
+                class="w-full px-5 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent shadow-sm">
         </div>
         
-        <div class="grid grid-cols-2 gap-4 mb-6">
+        <!-- Overhead % and Profit Margin % -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
                 <label class="block text-gray-700 font-semibold mb-2">Overhead %</label>
                 <input type="number" name="overhead_percentage" value="{{ old('overhead_percentage', $restaurant->overhead_percentage) }}" 
                     step="0.01" min="0" max="100"
-                    class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500">
-                <p class="text-sm text-gray-600 mt-1">Labor, utilities, rent costs</p>
+                    class="w-full px-5 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent shadow-sm">
+                <p class="text-sm text-gray-500 mt-1">Labor, utilities, rent costs</p>
             </div>
             
             <div>
                 <label class="block text-gray-700 font-semibold mb-2">Default Profit Margin %</label>
                 <input type="number" name="default_profit_margin" value="{{ old('default_profit_margin', $restaurant->default_profit_margin) }}" 
                     step="0.01" min="0" max="100"
-                    class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500">
+                    class="w-full px-5 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent shadow-sm">
             </div>
         </div>
         
-        <div class="flex space-x-4">
-            <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700">
-                <i class="fas fa-save"></i> Update Restaurant
+        <!-- Action Buttons -->
+        <div class="flex flex-col md:flex-row justify-center md:justify-start gap-4 mt-4">
+            <button type="submit" class="flex items-center justify-center bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-xl font-semibold shadow-md transition-all">
+                <i class="fas fa-save mr-2"></i> Update Restaurant
             </button>
-            <a href="{{ route('restaurants.show', $restaurant) }}" class="bg-gray-300 text-gray-700 px-6 py-2 rounded hover:bg-gray-400">
+            <a href="{{ route('restaurants.show', $restaurant) }}" class="flex items-center justify-center bg-gray-200 hover:bg-gray-300 text-gray-700 px-6 py-3 rounded-xl font-medium transition-all">
                 Cancel
             </a>
         </div>

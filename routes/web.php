@@ -7,6 +7,8 @@ use App\Http\Controllers\IngredientController;
 use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\DashboardController;
+
 // Root route - redirect to dashboard or login
 Route::get('/', function () {
     if (auth()->check()) {
