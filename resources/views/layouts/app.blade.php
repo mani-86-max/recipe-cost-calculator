@@ -6,7 +6,7 @@
     <title>@yield('title', 'Recipe Cost Calculator')</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+     <link rel="icon" type="image/png" href="{{ asset('images/myicon.png') }}">
     <!-- CKEditor 5 CDN -->
     <script src="https://cdn.ckeditor.com/ckeditor5/41.1.0/classic/ckeditor.js"></script>
     
@@ -28,49 +28,72 @@
 <body class="bg-gray-50 h-full flex flex-col">
 
     <!-- Navigation -->
+        <!-- Navigation -->
         <nav class="bg-gradient-to-r from-yellow-400 to-blue-500 shadow-lg sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16">
-                <div class="flex items-center">
-                    <a href="{{ route('restaurants.index') }}" class="flex items-center space-x-3 group">
-                        <div class="bg-gradient-to-r from-purple-500 to-pink-500 p-2 rounded-lg group-hover:scale-110 transition-transform">
-                            <i class="fas fa-utensils text-white text-xl"></i>
+        <div class="flex justify-between h-20">
+            <!-- Left Side - Logo with Food Image -->
+            <div class="flex items-center">
+                <a href="{{ route('restaurants.index') }}" class="flex items-center space-x-4 group">
+                    <!-- Food Image Circle -->
+                    <div class="relative">
+                        <div class="w-14 h-14 rounded-full overflow-hidden border-4 border-orange-400 group-hover:border-orange-600 transition-all shadow-lg group-hover:shadow-xl">
+                            <img src="https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=200&q=80" 
+                                 alt="Recipe Calculator" 
+                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
                         </div>
-                        <span class="text-xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+                        <!-- Small Icon Overlay -->
+                        <div class="absolute -bottom-1 -right-1 w-6 h-6 bg-gradient-to-r from-orange-500 to-red-500 rounded-full flex items-center justify-center border-2 border-white shadow-md">
+                            <i class="fas fa-utensils text-white text-xs"></i>
+                        </div>
+                    </div>
+                    
+                    <!-- Text -->
+                    <div>
+                        <span class="text-2xl font-extrabold bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent">
                             Recipe Calculator
                         </span>
-                    </a>
-                </div>
+                        <p class="text-xs text-gray-500 font-medium">Cost Management System</p>
+                    </div>
+                </a>
+            </div>
 
-                <div class="flex items-center space-x-4">
-                    @auth
-                        <a href="{{ route('restaurants.index') }}" class="flex items-center space-x-2 text-gray-700 hover:text-purple-600 transition-colors">
-                            <i class="fas fa-store"></i>
-                            <span class="hidden md:inline">My Restaurants</span>
-                        </a>
-                        <div class="flex items-center space-x-3 border-l pl-4">
-                            <div class="hidden md:block text-right">
-                                <p class="text-sm font-semibold text-gray-800">{{ auth()->user()->name }}</p>
-                                <p class="text-xs text-gray-500">{{ auth()->user()->email }}</p>
-                            </div>
-                            <div class="w-10 h-10 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center text-white font-bold">
-                                {{ strtoupper(substr(auth()->user()->name, 0, 1)) }}
-                            </div>
+            <!-- Right Side - Navigation Links -->
+            <div class="flex items-center space-x-4">
+                @auth
+                    <a href="{{ route('restaurants.index') }}" class="flex items-center space-x-2 text-gray-700 hover:text-orange-600 transition-colors px-3 py-2 rounded-lg hover:bg-orange-50">
+                        <i class="fas fa-store"></i>
+                        <span class="hidden md:inline font-medium">My Restaurants</span>
+                    </a>
+                    
+                    <div class="flex items-center space-x-3 border-l-2 border-gray-200 pl-4">
+                        <div class="hidden md:block text-right">
+                            <p class="text-sm font-semibold text-gray-800">{{ auth()->user()->name }}</p>
+                            <p class="text-xs text-gray-500">{{ auth()->user()->email }}</p>
                         </div>
-                        <form method="POST" action="{{ route('logout') }}" class="inline">@csrf
-                            <button class="text-gray-700 hover:text-red-600 transition-colors p-2 hover:bg-red-50 rounded-lg">
-                                <i class="fas fa-sign-out-alt"></i>
-                            </button>
-                        </form>
-                    @else
-                        <a href="{{ route('login') }}" class="text-gray-700 hover:text-purple-600 transition-colors">Login</a>
-                        <a href="{{ route('register') }}" class="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-4 py-2 rounded-lg hover:shadow-lg transition-all">Register</a>
-                    @endauth
-                </div>
+                        <div class="w-12 h-12 bg-gradient-to-r from-orange-500 to-red-500 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg hover:shadow-xl transition-all cursor-pointer">
+                            {{ strtoupper(substr(auth()->user()->name, 0, 1)) }}
+                        </div>
+                    </div>
+                    
+                    <form method="POST" action="{{ route('logout') }}" class="inline">
+                        @csrf
+                        <button class="text-gray-700 hover:text-red-600 transition-colors p-2 hover:bg-red-50 rounded-lg">
+                            <i class="fas fa-sign-out-alt text-xl"></i>
+                        </button>
+                    </form>
+                @else
+                    <a href="{{ route('login') }}" class="text-gray-700 hover:text-orange-600 transition-colors font-medium px-4 py-2 rounded-lg hover:bg-orange-50">
+                        Login
+                    </a>
+                    <a href="{{ route('register') }}" class="bg-gradient-to-r from-orange-600 to-red-600 text-white px-6 py-2 rounded-lg hover:shadow-lg transition-all font-semibold">
+                        Register
+                    </a>
+                @endauth
             </div>
         </div>
-    </nav>
-
+    </div>
+</nav>
     <!-- Alerts -->
     @if(session('success'))
         <div class="max-w-7xl mx-auto px-4 mt-4 w-full animate-fade-in">
