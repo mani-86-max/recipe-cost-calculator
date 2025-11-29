@@ -1,29 +1,29 @@
-services: 
-"  - type: web" 
-"    name: recipe-cost-calculator" 
-"    env: docker" 
-"    region: oregon" 
-"    branch: main" 
-"    dockerfilePath: ./Dockerfile" 
-"    plan: free" 
-"    envVars:" 
-"      - key: APP_ENV" 
-"        value: production" 
-"      - key: APP_KEY" 
-"        value: YOUR_APP_KEY" 
-"      - key: APP_DEBUG" 
-"        value: 'false'" 
-"      - key: APP_URL" 
-"        value: https://recipe-cost-calculator.onrender.com" 
-"      - key: DB_CONNECTION" 
-"        value: pgsql" 
-"      - key: DB_HOST" 
-"        value: your_db_host" 
-"      - key: DB_PORT" 
-"        value: '5432'" 
-"      - key: DB_DATABASE" 
-"        value: your_db_name" 
-"      - key: DB_USERNAME" 
-"        value: your_db_user" 
-"      - key: DB_PASSWORD" 
-"        value: your_db_password" 
+services:
+  - type: web
+    name: recipe-cost-calculator
+    env: docker
+    region: oregon
+    branch: main
+    dockerfilePath: ./Dockerfile
+    plan: free
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: APP_KEY
+        value: base64:At+Lld+v1cc3Wah1C5SXJk3zVxDKwXvFvzFbmb/F9To=
+      - key: APP_DEBUG
+        value: 'false'
+      - key: APP_URL
+        value: https://recipe-cost-calculator.onrender.com
+      - key: DB_CONNECTION
+        value: mysql
+      - key: DB_HOST
+        value: <your-render-mysql-host>
+      - key: DB_PORT
+        value: '3306'
+      - key: DB_DATABASE
+        value: recipe_calculator
+      - key: DB_USERNAME
+        value: <your-render-mysql-username>
+      - key: DB_PASSWORD
+        value: <your-render-mysql-password>
