@@ -7,6 +7,8 @@ services:
     dockerfilePath: ./Dockerfile
     plan: free
     envVars:
+      - key: APP_NAME
+        value: Laravel
       - key: APP_ENV
         value: production
       - key: APP_KEY
@@ -27,3 +29,19 @@ services:
         value: <your-render-mysql-username>
       - key: DB_PASSWORD
         value: <your-render-mysql-password>
+      - key: SESSION_DRIVER
+        value: database
+      - key: SESSION_LIFETIME
+        value: '120'
+      - key: SESSION_ENCRYPT
+        value: 'false'
+      - key: CACHE_STORE
+        value: database
+      - key: FILESYSTEM_DISK
+        value: local
+      - key: BROADCAST_CONNECTION
+        value: log
+      - key: QUEUE_CONNECTION
+        value: database
+      - key: MAIL_MAILER
+        value: log
