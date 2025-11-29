@@ -73,8 +73,9 @@
         </div>
     </div>
 
-    <!-- Quick Stats Cards -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+    <!-- Quick Stats Cards (4 cards: Recipes, Ingredients, Categories, Suppliers) -->
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+        <!-- Recipes Card -->
         <a href="{{ route('restaurants.recipes.index', $restaurant) }}" 
            class="group bg-white rounded-xl shadow-lg p-6 card-hover">
             <div class="flex items-center justify-between mb-4">
@@ -86,7 +87,8 @@
             <p class="text-gray-600 text-sm mb-1">Total Recipes</p>
             <p class="text-4xl font-bold text-gray-800">{{ $restaurant->recipes->count() }}</p>
         </a>
-        
+
+        <!-- Ingredients Card -->
         <a href="{{ route('restaurants.ingredients.index', $restaurant) }}" 
            class="group bg-white rounded-xl shadow-lg p-6 card-hover">
             <div class="flex items-center justify-between mb-4">
@@ -98,7 +100,8 @@
             <p class="text-gray-600 text-sm mb-1">Ingredients</p>
             <p class="text-4xl font-bold text-gray-800">{{ $restaurant->ingredients->count() }}</p>
         </a>
-        
+
+        <!-- Categories Card -->
         <a href="{{ route('restaurants.categories.index', $restaurant) }}" 
            class="group bg-white rounded-xl shadow-lg p-6 card-hover">
             <div class="flex items-center justify-between mb-4">
@@ -109,6 +112,19 @@
             </div>
             <p class="text-gray-600 text-sm mb-1">Categories</p>
             <p class="text-4xl font-bold text-gray-800">{{ $restaurant->categories->count() }}</p>
+        </a>
+
+        <!-- Suppliers Card (NEW) -->
+        <a href="{{ route('restaurants.suppliers.index', $restaurant) }}" 
+           class="group bg-white rounded-xl shadow-lg p-6 card-hover">
+            <div class="flex items-center justify-between mb-4">
+                <div class="w-16 h-16 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <i class="fas fa-truck text-white text-2xl"></i>
+                </div>
+                <i class="fas fa-arrow-right text-gray-400 group-hover:text-indigo-600 group-hover:translate-x-2 transition-all"></i>
+            </div>
+            <p class="text-gray-600 text-sm mb-1">Suppliers</p>
+            <p class="text-4xl font-bold text-gray-800">{{ $restaurant->suppliers->count() }}</p>
         </a>
     </div>
 

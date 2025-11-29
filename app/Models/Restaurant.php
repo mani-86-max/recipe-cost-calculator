@@ -10,12 +10,16 @@ class Restaurant extends Model
 {
     protected $fillable = [
         'user_id', 'name', 'address', 'phone', 
-        'overhead_percentage', 'default_profit_margin'
+        'overhead_percentage', 'default_profit_margin',
+        'hourly_labor_rate',           
+        'packaging_cost_per_item'
     ];
 
     protected $casts = [
         'overhead_percentage' => 'decimal:2',
         'default_profit_margin' => 'decimal:2',
+        'hourly_labor_rate' => 'decimal:2',
+        'packaging_cost_per_item' => 'decimal:2',
     ];
 
     public function user(): BelongsTo
@@ -36,5 +40,10 @@ class Restaurant extends Model
     public function categories(): HasMany
     {
         return $this->hasMany(Category::class);
+    }
+
+    public function suppliers(): HasMany
+    {
+    return $this->hasMany(Supplier::class);
     }
 }

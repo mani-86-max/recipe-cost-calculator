@@ -9,7 +9,9 @@ use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class RecipeController extends Controller
-{   use AuthorizesRequests;
+{
+    use AuthorizesRequests;
+
     protected $costCalculator;
 
     public function __construct(RecipeCostCalculator $costCalculator)
@@ -55,7 +57,14 @@ class RecipeController extends Controller
             'ingredients.*.ingredient_id' => 'required|exists:ingredients,id',
             'ingredients.*.quantity' => 'required|numeric|min:0',
             'ingredients.*.unit_id' => 'required|exists:units,id',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // image validation
         ]);
+
+        // Handle image upload
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('recipes', 'public');
+            $validated['image'] = $path;
+        }
 
         $recipe = $restaurant->recipes()->create($validated);
 
@@ -120,7 +129,14 @@ class RecipeController extends Controller
             'ingredients.*.ingredient_id' => 'required|exists:ingredients,id',
             'ingredients.*.quantity' => 'required|numeric|min:0',
             'ingredients.*.unit_id' => 'required|exists:units,id',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // image validation
         ]);
+
+        // Handle image upload
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('recipes', 'public');
+            $validated['image'] = $path;
+        }
 
         $recipe->update($validated);
 

@@ -34,7 +34,13 @@ class Ingredient extends Model
     {
         return $this->hasMany(PriceHistory::class);
     }
-
+    public function suppliers(): BelongsToMany
+   {
+    return $this->belongsToMany(Supplier::class, 'ingredient_supplier')
+        ->withPivot('price', 'quantity', 'unit_id', 'last_purchase_date', 'is_preferred', 'notes')
+        ->withTimestamps();
+    }
+    
     public function getPricePerBaseUnit(): float
     {
         $wastageMultiplier = 1 + ($this->wastage_percentage / 100);
